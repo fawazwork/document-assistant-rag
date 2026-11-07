@@ -34,3 +34,9 @@ if uploaded_file is not None:
             with st.spinner("Thinking..."):
                 answer = answer_question(question, top_chunks)
             st.write(answer)
+            pages_used = sorted({chunks[i]["page"] for i in ids})
+            st.caption(f"Sources: pages {pages_used}")
+            with st.expander("Show source text"):
+                for score, i in zip(scores, ids):
+                    st.markdown(f"**Page {chunks[i]['page']}** (score {score:.2f})")
+                    st.text(chunks[i]["text"])
