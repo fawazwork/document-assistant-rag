@@ -16,11 +16,15 @@ if not chunks:
 index = build_index(embed_texts([c["text"] for c in chunks]))
 
 tests = [
-    ("What is covered in Level 4?", 2),
-    ("What is the boss fight for Level 5?", 2),
-    ("What is the final mini project?", 2),
+    ("How many layers are in the encoder stack?", 3),
+    ("What optimizer was used for training?", 7),
+    ("How many attention heads does the base model use?", 5),
+    ("What hardware was used to train the models?", 7),
+    ("What BLEU score did the big model get on English-to-German translation?", 8),
+    ("Why does the model need positional encoding?", 6),
+    ("What is scaled dot-product attention?", 4),
+    ("What dataset was used for English-to-French training?", 7),
 ]
-
 hits = 0
 for question, expected_page in tests:
     _, ids = search(index, embed_texts([question]))
