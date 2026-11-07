@@ -1,3 +1,4 @@
+from embedder import embed_texts
 from chunker import chunk_pages
 import streamlit as st
 from pypdf import PdfReader
@@ -21,3 +22,5 @@ if uploaded_file is not None:
         chunks = chunk_pages(pages)
         st.write(f"Total chunks: {len(chunks)}")
         st.text(chunks[0]["text"])
+        vectors = embed_texts([c["text"] for c in chunks])
+        st.write(f"Embeddings shape: {vectors.shape}")
