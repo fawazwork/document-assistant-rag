@@ -1,3 +1,4 @@
+from llm import answer_question
 from vector_store import build_index, search
 from embedder import embed_texts
 from chunker import chunk_pages
@@ -29,6 +30,7 @@ if uploaded_file is not None:
         question = st.text_input("Ask a question about the PDF")
         if question:
             scores, ids = search(index, embed_texts([question]))
-            for score, i in zip(scores, ids):
-                st.write(f"Page {chunks[i]['page']} (score {score:.2f})")
-                st.text(chunks[i]["text"])
+            top_chunks = [chunks[i] for i in ids]
+            with st.spinner("Thinking..."):
+                answer = answer_question(question, top_chunks)
+            st.write(answer)
