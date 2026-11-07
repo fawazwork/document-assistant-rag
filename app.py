@@ -1,3 +1,4 @@
+from vector_store import build_index, search
 from embedder import embed_texts
 from chunker import chunk_pages
 import streamlit as st
@@ -24,3 +25,10 @@ if uploaded_file is not None:
         st.text(chunks[0]["text"])
         vectors = embed_texts([c["text"] for c in chunks])
         st.write(f"Embeddings shape: {vectors.shape}")
+        index = build_index(vectors)
+        question = st.text_input("Ask a question about the PDF")
+        if question:
+            scores, ids = search(index, embed_texts([question]))
+            for score, i in zip(scores, ids):
+                st.write(f"Page {chunks[i]['page']} (score {score:.2f})")
+                st.text(chunks[i]["text"])
