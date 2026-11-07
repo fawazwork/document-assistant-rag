@@ -1,3 +1,4 @@
+from chunker import chunk_pages
 import streamlit as st
 from pypdf import PdfReader
 
@@ -17,3 +18,6 @@ if uploaded_file is not None:
     else:
         st.write(f"Pages with text: {len(pages)} of {len(reader.pages)}")
         st.text(pages[0]["text"][:500])
+        chunks = chunk_pages(pages)
+        st.write(f"Total chunks: {len(chunks)}")
+        st.text(chunks[0]["text"])
