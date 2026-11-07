@@ -29,7 +29,7 @@ if uploaded_file is not None:
         index = build_index(vectors)
         question = st.text_input("Ask a question about the PDF")
         if question:
-            scores, ids = search(index, embed_texts([question]))
+            scores, ids = search(index, embed_texts([question]), k=5)
             top_chunks = [chunks[i] for i in ids]
             with st.spinner("Thinking..."):
                 answer = answer_question(question, top_chunks)

@@ -4,8 +4,9 @@ import ollama
 def answer_question(question, chunks):
     context = "\n\n".join(f"[Page {c['page']}]\n{c['text']}" for c in chunks)
     prompt = f"""Answer the question using only the context below.
+Give a short, direct answer in 1 to 3 sentences.
 If the answer is not in the context, say "I couldn't find that in the document."
-Mention the page number(s) you used.
+Do not mention page numbers.
 
 Context:
 {context}
