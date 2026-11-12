@@ -13,9 +13,9 @@ for number, page in enumerate(reader.pages, start=1):
 chunks = chunk_pages(pages)
 index = build_index(embed_texts([c["text"] for c in chunks]))
 
-question = "How many attention heads does the base model use?"
+question = "What BLEU score did the big model get on English-to-German translation?"
 _, ids = search(index, embed_texts([question]), k=len(chunks))
 
 for rank, i in enumerate(ids, start=1):
-    if "h = 8" in chunks[i]["text"]:
-        print("h = 8 found at rank", rank, "on page", chunks[i]["page"])
+    if "28.4" in chunks[i]["text"]:
+        print("28.4 found at rank", rank, "on page", chunks[i]["page"])
