@@ -21,8 +21,6 @@ Upload a PDF, ask questions, and get answers with page references. Runs fully lo
 - The app re-processes the PDF on every question and answers one document at a time with no chat memory, so follow-up questions don't work yet.
 
 ## Run it
-```
-## Run it
 
 **You need:** Python 3.10+, Git, and [Ollama](https://ollama.com) installed.
 
@@ -43,4 +41,3 @@ Then upload a text-based PDF in the browser and ask questions.
 - Llama 3.1 8B needs roughly 6 GB of GPU memory or 16 GB of RAM. On a weaker PC, use `ollama pull llama3.2:3b` and change the model name in `llm.py` (faster, less accurate).
 - The first run downloads a small embedding model (about 90 MB), and the first question is slow while Ollama loads the model.
 - To run `eval.py`, download the paper from https://arxiv.org/pdf/1706.03762 and save it as `sample.pdf` in the project folder.
-```
