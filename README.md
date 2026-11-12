@@ -12,13 +12,13 @@ Upload a PDF, ask questions, and get answers with page references. Runs fully lo
 
 ## Results
 - Retrieval hit rate (top 3): 7/8 strict, 8/8 accepting any page that contains the answer (tested on the "Attention Is All You Need" paper).
-- Llama 3.2 3B vs Llama 3.1 8B: TODO write what you found.
+- Llama 3.2 3B vs Llama 3.1 8B: on the question "What BLEU score did the big model get on English-to-German?", 3B mixed up the English-to-French score and contradicted itself, while 8B answered correctly (28.4) in under 5 seconds on a GTX 1660. Both refused an out-of-document question instead of guessing.
 - Refuses questions the document doesn't cover instead of guessing.
 
 ## Limitations
 - Scanned PDFs (images) are not supported.
 - Tables and footnotes can come out as flattened text.
-- TODO add one more.
+- The app re-processes the PDF on every question and answers one document at a time with no chat memory, so follow-up questions don't work yet.
 
 ## Run it
 ```
